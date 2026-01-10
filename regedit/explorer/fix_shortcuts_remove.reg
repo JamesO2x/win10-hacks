@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Resets the " - Shortcut" text that is appended to shortcuts to default
+
+; 1. Reset the legacy binary 'link' value to default
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
+"link"=hex:1e,00,00,00
+
+; Default (Windows handles this automatically; no manual entry normally exists)
+; To restore default behavior, delete the Custom NamingTemplates key:
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates]
