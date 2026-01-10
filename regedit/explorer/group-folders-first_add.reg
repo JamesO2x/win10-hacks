@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; Makes folders always appear at top when grouped by type
+
+[HKEY_CLASSES_ROOT\Directory]
+"FriendlyTypeName"="[Folder]"
+
+[HKEY_CLASSES_ROOT\Folder]
+"FriendlyTypeName"="[Folder]"

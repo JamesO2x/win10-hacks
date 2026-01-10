@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; Restores default sort order for folders when grouped by type
+
+[HKEY_CLASSES_ROOT\Directory]
+"FriendlyTypeName"="File Folder"
+
+[HKEY_CLASSES_ROOT\Folder]
+"FriendlyTypeName"="File Folder"
