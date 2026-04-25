@@ -1,0 +1,34 @@
+Windows Registry Editor Version 5.00
+
+; GUID: 20748D83-E82A-404B-8158-5DDA39200421
+; Maps the folder C:\Y\ as a driver letter Y:\, then gives it a name "COMBO" and access to a Recycle Bin
+
+; - **What This REG File Does**: Creates a virtual Y: drive mapping `C:\Y`, 
+;   - then registers it as a custom "known folder" with a unique Global Identifier (GUID `{20748D83-E82A-404B-8158-5DDA39200421}`) 
+;   - with Explorer integration, Recycle Bin quota (~50 GB), 
+;   - and 32/64-bit compatibility.
+; - **MaxCapacity value**: Hex `0000c7eb` = 51,179 (decimal) = ~50 GB (in megabytes).
+; - **Why define MaxCapacity**: Custom known folders require explicit size limits (no auto-calculation); Windows defaults to ~5% of drive space for real volumes to prevent disk overflow from deleted files.
+; - **Known folder**: Special system-recognized folder (like Documents) with GUID, custom name/path, and Explorer privileges (Recycle Bin, search, backups); script makes Q: act like one.
+; - **Deletion behavior**: Files deleted from Y: (or underlying C: path) always go to **C:'s single $Recycle.Bin**—no separate Y: bin or scattering. "Known folder" settings just enforce quota/behavior, not storage location.
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\DOS Devices]
+"Y:"="\\??\\C:\\Y"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{20748D83-E82A-404B-8158-5DDA39200421}]
+"RelativePath"="Y:\\"
+"Category"=dword:00000004
+"Name"="COMBO"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\BitBucket\KnownFolder\{20748D83-E82A-404B-8158-5DDA39200421}]
+"MaxCapacity"=dword:0000c7eb
+"NukeOnDelete"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{20748D83-E82A-404B-8158-5DDA39200421}]
+"RelativePath"="Y:\\"
+"Category"=dword:00000004
+"Name"="COMBO"
+
+[HKEY_CURRENT_USER\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\BitBucket\KnownFolder\{20748D83-E82A-404B-8158-5DDA39200421}]
+"MaxCapacity"=dword:0000c7eb
+"NukeOnDelete"=dword:00000000
