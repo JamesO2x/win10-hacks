@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+; Disable Windows INK driver, and use Legacy Pen behavior instead.
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Pen]
+"LegacyPenInteractionModel"=dword:00000001
+
