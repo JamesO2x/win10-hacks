@@ -1,5 +1,6 @@
 # Detect registry files as text
-*.reg   text working-tree-encoding=UTF-16
+*.reg   text working-tree-encoding=UTF-16 eol=CRLF
 
 # Auto detect text files and perform LF normalization
 * text=auto
+
