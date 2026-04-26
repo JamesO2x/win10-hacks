@@ -4,6 +4,8 @@ import sys
 
 OBS_PATH = os.path.expandvars(r"%appdata%\Obsidian\obsidian.json")
 
+def pause():
+    input('Press any key to continue...')
 
 def set_read_only(path: str) -> None:
     current_mode = os.stat(path).st_mode
@@ -66,10 +68,13 @@ def main() -> int:
     choice = input("Choose action: ").strip()
     if choice == "1":
         lock_obsidian(OBS_PATH)
+        pause()
     elif choice == "2":
         unlock_obsidian(OBS_PATH)
+        pause()
     else:
         print("Invalid choice. Please run the script again and choose 1 or 2.")
+        pause()
         return 1
 
     return 0
