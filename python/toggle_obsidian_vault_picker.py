@@ -1,6 +1,7 @@
 import os
 import stat
 import sys
+import re
 
 OBS_PATH = os.path.expandvars(r"%appdata%\Obsidian\obsidian.json")
 
@@ -24,7 +25,7 @@ def lock_obsidian(path: str) -> None:
     with open(path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    replaced = content.replace('"open": true', '"open": false')
+    replaced, count = re.subn(r'"open"\s*:\s*true', '"open": false', content)
 
     if replaced == content:
         print("No 'open': true entries were found in the file.")
@@ -67,6 +68,7 @@ def main() -> int:
 
     choice = input("Choose action: ").strip()
     if choice == "1":
+        unlock_obsidian(OBS_PATH) # We have to unlock first otherwise stupid "permission denied" error
         lock_obsidian(OBS_PATH)
         pause()
     elif choice == "2":
